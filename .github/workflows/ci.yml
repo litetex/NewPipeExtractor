@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:    
   schedule:
       # once per day
     - cron: 0 0 * * *
