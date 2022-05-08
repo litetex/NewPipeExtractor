@@ -11,8 +11,13 @@ public class PlaylistInfoItem extends InfoItem {
     private long streamCount = 0;
     private PlaylistInfo.PlaylistType playlistType;
 
-    public PlaylistInfoItem(final int serviceId, final String url, final String name) {
-        super(InfoType.PLAYLIST, serviceId, url, name);
+    public PlaylistInfoItem(
+            final int serviceId,
+            final String serviceBasedId,
+            final String url,
+            final String name
+    ) {
+        super(InfoType.PLAYLIST, serviceId, serviceBasedId, url, name);
     }
 
     public String getUploaderName() {

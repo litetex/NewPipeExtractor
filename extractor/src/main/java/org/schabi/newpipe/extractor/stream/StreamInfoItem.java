@@ -39,15 +39,26 @@ public class StreamInfoItem extends InfoItem {
     private long viewCount = -1;
     private long duration = -1;
 
+    /**
+     * @see InfoItem#getServiceBasedId()
+     */
+    private String uploaderServiceBasedId = null;
+    /**
+     * @deprecated see {@link InfoItem#getUrl()}
+     */
+    @Deprecated
     private String uploaderUrl = null;
     private String uploaderAvatarUrl = null;
     private boolean uploaderVerified = false;
 
-    public StreamInfoItem(final int serviceId,
-                          final String url,
-                          final String name,
-                          final StreamType streamType) {
-        super(InfoType.STREAM, serviceId, url, name);
+    public StreamInfoItem(
+            final int serviceId,
+            final String url,
+            final String serviceBasedId,
+            final String name,
+            final StreamType streamType
+    ) {
+        super(InfoType.STREAM, serviceId, serviceBasedId, url, name);
         this.streamType = streamType;
     }
 
@@ -79,10 +90,26 @@ public class StreamInfoItem extends InfoItem {
         this.duration = duration;
     }
 
+    public String getUploaderServiceBasedId() {
+        return uploaderServiceBasedId;
+    }
+
+    public void setUploaderServiceBasedId(final String uploaderServiceBasedId) {
+        this.uploaderServiceBasedId = uploaderServiceBasedId;
+    }
+
+    /**
+     * @deprecated see {@link InfoItem#getUrl()}
+     */
+    @Deprecated
     public String getUploaderUrl() {
         return uploaderUrl;
     }
 
+    /**
+     * @deprecated see {@link InfoItem#getUrl()}
+     */
+    @Deprecated
     public void setUploaderUrl(final String uploaderUrl) {
         this.uploaderUrl = uploaderUrl;
     }
@@ -133,18 +160,22 @@ public class StreamInfoItem extends InfoItem {
     @Override
     public String toString() {
         return "StreamInfoItem{"
-                + "streamType=" + streamType
-                + ", uploaderName='" + uploaderName + '\''
-                + ", textualUploadDate='" + textualUploadDate + '\''
-                + ", viewCount=" + viewCount
-                + ", duration=" + duration
-                + ", uploaderUrl='" + uploaderUrl + '\''
-                + ", infoType=" + getInfoType()
-                + ", serviceId=" + getServiceId()
+                + "serviceId=" + getServiceId()
+                + ", serviceBasedId='" + getServiceBasedId() + '\''
                 + ", url='" + getUrl() + '\''
                 + ", name='" + getName() + '\''
                 + ", thumbnailUrl='" + getThumbnailUrl() + '\''
-                + ", uploaderVerified='" + isUploaderVerified() + '\''
+                + ", streamType=" + streamType
+                + ", uploaderName='" + uploaderName + '\''
+                + ", shortDescription='" + shortDescription + '\''
+                + ", textualUploadDate='" + textualUploadDate + '\''
+                + ", uploadDate=" + uploadDate
+                + ", viewCount=" + viewCount
+                + ", duration=" + duration
+                + ", uploaderServiceBasedId='" + uploaderServiceBasedId + '\''
+                + ", uploaderUrl='" + uploaderUrl + '\''
+                + ", uploaderAvatarUrl='" + uploaderAvatarUrl + '\''
+                + ", uploaderVerified=" + uploaderVerified
                 + '}';
     }
 }

@@ -29,8 +29,13 @@ public class ChannelInfoItem extends InfoItem {
     private long streamCount = -1;
     private boolean verified = false;
 
-    public ChannelInfoItem(final int serviceId, final String url, final String name) {
-        super(InfoType.CHANNEL, serviceId, url, name);
+    public ChannelInfoItem(
+            final int serviceId,
+            final String serviceBasedId,
+            final String url,
+            final String name
+    ) {
+        super(InfoType.CHANNEL, serviceId, serviceBasedId, url, name);
     }
 
     public String getDescription() {

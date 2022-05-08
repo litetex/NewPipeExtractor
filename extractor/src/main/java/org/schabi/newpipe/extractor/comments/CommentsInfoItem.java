@@ -28,8 +28,13 @@ public class CommentsInfoItem extends InfoItem {
     public static final int NO_LIKE_COUNT = -1;
     public static final int NO_STREAM_POSITION = -1;
 
-    public CommentsInfoItem(final int serviceId, final String url, final String name) {
-        super(InfoType.COMMENT, serviceId, url, name);
+    public CommentsInfoItem(
+            final int serviceId,
+            final String serviceBasedId,
+            final String url,
+            final String name
+    ) {
+        super(InfoType.COMMENT, serviceId, serviceBasedId, url, name);
     }
 
     public String getCommentId() {

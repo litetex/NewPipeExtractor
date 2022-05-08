@@ -17,7 +17,11 @@ public final class CommentsInfoItemsCollector
     public CommentsInfoItem extract(final CommentsInfoItemExtractor extractor)
             throws ParsingException {
         final CommentsInfoItem resultItem = new CommentsInfoItem(
-                getServiceId(), extractor.getUrl(), extractor.getName());
+                getServiceId(),
+                extractor.getServiceBasedId(),
+                extractor.getUrl(),
+                extractor.getName()
+        );
 
         // optional information
         try {

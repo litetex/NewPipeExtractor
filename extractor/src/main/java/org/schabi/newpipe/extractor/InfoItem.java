@@ -25,16 +25,37 @@ import java.io.Serializable;
 public abstract class InfoItem implements Serializable {
     private final InfoType infoType;
     private final int serviceId;
+    /**
+     * Service based identifier.
+     * <br/>
+     * Contains key identifiers from whom the URL can be built (using the corresponding LinkHandler)
+     * e.g. _27eD49ePQE (for YT) or https://framatube.org;kkGMgK9ZtnKfYAgnEtQxbv (for Peertube)
+     */
+    private final String serviceBasedId;
+    /**
+     * @deprecated Using urls directly has multiple disadvantages:
+     * <ul>
+     *     <li>a url contains a lot of overhead</li>
+     *     <li>using proxy-like services is not possible because the url is hardcoded to a host</li>
+     *     <li>a url can change and might become invalid</li>
+     * </ul>
+     * use {@link #serviceBasedId} instead
+     */
+    @Deprecated
     private final String url;
     private final String name;
     private String thumbnailUrl;
 
-    public InfoItem(final InfoType infoType,
-                    final int serviceId,
-                    final String url,
-                    final String name) {
+    protected InfoItem(
+            final InfoType infoType,
+            final int serviceId,
+            final String serviceBasedId,
+            final String url,
+            final String name
+    ) {
         this.infoType = infoType;
         this.serviceId = serviceId;
+        this.serviceBasedId = serviceBasedId;
         this.url = url;
         this.name = name;
     }
@@ -47,6 +68,14 @@ public abstract class InfoItem implements Serializable {
         return serviceId;
     }
 
+    public String getServiceBasedId() {
+        return serviceBasedId;
+    }
+
+    /**
+     * @deprecated see {@link #url}
+     */
+    @Deprecated
     public String getUrl() {
         return url;
     }
@@ -65,7 +94,12 @@ public abstract class InfoItem implements Serializable {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "[url=\"" + url + "\", name=\"" + name + "\"]";
+        return getClass().getSimpleName()
+                + "[serviceId=" + serviceId
+                + ", serviceBasedId='" + serviceBasedId + '\''
+                + ", url='" + url + '\''
+                + ", name='" + name + '\''
+                + ']';
     }
 
     public enum InfoType {

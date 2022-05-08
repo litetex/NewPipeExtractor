@@ -33,7 +33,11 @@ public final class ChannelInfoItemsCollector
     public ChannelInfoItem extract(final ChannelInfoItemExtractor extractor)
             throws ParsingException {
         final ChannelInfoItem resultItem = new ChannelInfoItem(
-                getServiceId(), extractor.getUrl(), extractor.getName());
+                getServiceId(),
+                extractor.getServiceBasedId(),
+                extractor.getUrl(),
+                extractor.getName()
+        );
 
         // optional information
         try {

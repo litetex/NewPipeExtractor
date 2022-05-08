@@ -4,6 +4,10 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 public interface InfoItemExtractor {
     String getName() throws ParsingException;
+
+    String getServiceBasedId() throws ParsingException;
+
     String getUrl() throws ParsingException;
+    
     String getThumbnailUrl() throws ParsingException;
 }

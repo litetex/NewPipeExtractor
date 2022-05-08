@@ -45,7 +45,12 @@ public class StreamInfoItemsCollector
         }
 
         final StreamInfoItem resultItem = new StreamInfoItem(
-                getServiceId(), extractor.getUrl(), extractor.getName(), extractor.getStreamType());
+                getServiceId(),
+                extractor.getServiceBasedId(),
+                extractor.getUrl(),
+                extractor.getName(),
+                extractor.getStreamType()
+        );
 
         // optional information
         try {
